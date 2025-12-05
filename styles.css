@@ -1,91 +1,185 @@
-/* Your CSS Code here. */
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+:root {
+  --bg: #f5f7fb;
+  --card: #ffffff;
+  --primary: #0a66ff;
+  --primary-600: #0056b3;
+  --muted: #6b7280;
+  --radius: 10px;
+  --gap: 14px;
+  --max-width: 720px;
+  --shadow: 0 6px 18px rgba(10, 10, 30, 0.06);
+  --transition: 200ms ease;
+  --focus-shadow: 0 0 0 4px rgba(10, 102, 255, 0.12);
 }
 
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
-    color: #333;
-    line-height: 1.6;
+  height: 100%;
+  background: var(--bg);
+  color: #111827;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial,
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.4;
+  font-size: 16px;
 }
 
 main {
-    min-height: 100vh;
-    padding: 20px;
-    display: flex;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 28px;
 }
 
 .container {
-    max-width: 50%;
-    margin: auto;
-    background: #fff;
-    padding: 20px 40px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 94%;
+  max-width: var(--max-width);
+  background: var(--card);
+  padding: 28px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  margin-inline: auto;
 }
 
+/* Heading */
 .container h1 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #007BFF;
-    line-height: 1.2;
+  text-align: center;
+  margin-bottom: 18px;
+  color: var(--primary);
+  font-size: 1.45rem;
+  line-height: 1.15;
 }
 
+/* Form layout */
 form {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+  display: grid;
+  gap: var(--gap);
 }
 
-.form-field {
-    display: flex;
-    flex-direction: column;
+/* Each row */
+.form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
-.form-field > input,
-.form-field > select {
-    padding: 6px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+/* Labels */
+label {
+  font-weight: 600;
+  color: #111827;
+  font-size: 0.95rem;
 }
 
-.form-field > input:focus,
-.form-field > select:focus {
-    border-color: #007BFF;
-    outline: none;
+/* Inputs & selects */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="date"],
+select {
+  padding: 10px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 1rem;
+  background: white;
+  transition: border-color var(--transition), box-shadow var(--transition);
 }
 
-.form-field > label {
-    margin-bottom: 4px;
-    font-weight: 500;
+input::placeholder {
+  color: #9ca3af;
 }
 
-.gender-field {
-    flex-direction: row;
-    gap: 10px;
-    align-items: center;
+/* focus */
+input:focus,
+select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: var(--focus-shadow);
 }
 
-.gender-field .gender-options {
-    display: flex;
-    gap: 10px;
+/* Radio group */
+fieldset {
+  border: none;
+  padding: 0;
 }
 
-form > button {
-    padding: 10px;
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    margin-top: 16px;
+legend {
+  font-weight: 600;
+  margin-bottom: 6px;
 }
 
-form > button:hover {
-    background-color: #0056b3;
+.radio-group {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.radio {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+  padding: 6px 8px;
+  border-radius: 8px;
+  transition: background-color var(--transition);
+}
+
+.radio input[type="radio"] {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--primary);
+}
+
+/* help text */
+.help-text {
+  color: var(--muted);
+  font-size: 0.875rem;
+  margin-top: 4px;
+}
+
+/* actions */
+.form-actions {
+  margin-top: 6px;
+  display: flex;
+  justify-content: center;
+}
+
+button[type="submit"] {
+  padding: 12px 18px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  background: var(--primary);
+  color: white;
+  font-weight: 700;
+  font-size: 1rem;
+  transition: transform 120ms ease, background-color var(--transition);
+}
+
+button[type="submit"]:hover {
+  background: var(--primary-600);
+  transform: translateY(-1px);
+}
+
+/* Responsive: smaller screens */
+@media (max-width: 520px) {
+  .container {
+    padding: 18px;
+  }
+  .radio-group {
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  button[type="submit"] {
+    width: 100%;
+  }
 }
